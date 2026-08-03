@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light mode is the default; tokens here */
+:root {
+  --bg: 251 251 249;            /* near-white with warm tint */
+  --surface: 255 255 255;       /* pure white card */
+  --surface-subtle: 250 250 248; /* off-white chrome */
+  --surface-muted: 244 244 242;  /* hover / sidebar */
+  --surface-inverse: 11 11 10;   /* always dark — CTAs, dark sections */
+
+  --fg: 11 11 10;                /* near-black */
+  --fg-muted: 93 93 88;          /* secondary text */
+  --fg-subtle: 130 130 125;      /* tertiary text */
+  --fg-inverse: 244 243 238;     /* text on dark surfaces */
+
+  --edge: 215 215 211;           /* subtle border */
+  --edge-strong: 179 179 171;    /* stronger border */
+}
+
+/* Dark mode: tokens flip, inverse stays the same */
+.dark {
+  --bg: 11 11 10;
+  --surface: 26 26 24;
+  --surface-subtle: 19 19 18;
+  --surface-muted: 30 30 28;
+  --surface-inverse: 11 11 10;
+
+  --fg: 244 243 238;
+  --fg-muted: 179 175 168;
+  --fg-subtle: 130 127 122;
+  --fg-inverse: 244 243 238;
+
+  --edge: 42 42 39;
+  --edge-strong: 63 63 58;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-family: var(--font-sans, ui-sans-serif), system-ui, sans-serif;
+}
+
+/* Subtle grain backdrop for hero */
+.grain {
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+.dark .grain {
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Apple-y ring on focus */
+.focus-ring:focus-visible {
+  outline: 2px solid #2c6149;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.dark .focus-ring:focus-visible {
+  outline-color: #8bb89c;
+}
+
+/* Selection */
+::selection {
+  background-color: #b9d6c4;
+  color: #0b0b0a;
+}
+
+.dark ::selection {
+  background-color: #234d3b;
+  color: #f4f3ee;
+}
+
+/* Smooth transitions for theme change */
+html.theme-ready,
+html.theme-ready * {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
