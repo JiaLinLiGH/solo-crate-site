@@ -5,7 +5,7 @@ export const SITE = {
     'Solo Crate is a Mac-native receipt manager. Drag in a receipt, Apple Vision reads it locally, tags auto-apply, export a clean bundle. No subscription, 14-day free trial.',
   url: 'https://JiaLinLiGH.github.io/solo-crate-site/',
   appStoreUrl: 'https://apps.apple.com/us/app/id000000000',
-  supportUrl: 'mailto:JiaLinLiGH@163.com',
+  supportUrl: 'mailto:lijialin6972@163.com',
   privacyUrl: '/privacy',
   termsUrl: '/terms',
 };
