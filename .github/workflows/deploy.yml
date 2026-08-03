@@ -37,10 +37,12 @@ jobs:
       - name: Add .nojekyll
         run: touch out/.nojekyll
 
-      - name: Setup Pages (auto-enable if not yet enabled in repo Settings)
+      # IMPORTANT: Pages must be enabled manually first in repo
+      # Settings → Pages → Source: "GitHub Actions" → Save.
+      # The GITHUB_TOKEN cannot create the Pages site via API on personal
+      # accounts (returns "Resource not accessible by integration").
+      - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
