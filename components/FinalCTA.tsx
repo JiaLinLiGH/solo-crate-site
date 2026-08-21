@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { appStoreLink } from '@/lib/content';
 
 export function FinalCTA() {
   return (
@@ -24,15 +25,17 @@ export function FinalCTA() {
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href="#"
+            <a
+              href={appStoreLink('final-cta')}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-medium text-ink-900 shadow-soft transition hover:bg-ink-50 focus-ring"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
                 <path d="M16.365 1.43c0 1.14-.43 2.27-1.18 3.13-.81.94-2.16 1.69-3.32 1.6-.15-1.13.4-2.32 1.14-3.13.83-.9 2.21-1.58 3.36-1.6zM20.5 17.34c-.55 1.27-1.21 2.49-2.04 3.66-1.1 1.55-2.13 2.94-3.41 2.94-1.27 0-1.6-.78-3.32-.78-1.71 0-2.13.78-3.41.78-1.27 0-2.23-1.32-3.34-2.87-2.43-3.4-4.27-9.6-1.79-13.8 1.24-2.1 3.41-3.42 5.78-3.42 1.42 0 2.75.78 3.6.78.85 0 2.5-.95 4.18-.81.71.03 2.7.29 3.98 2.16-.11.06-2.38 1.39-2.36 4.13.03 3.28 2.88 4.37 2.9 4.39-.03.07-.45 1.55-1.46 3.04z" />
               </svg>
               Download for macOS
-            </Link>
+            </a>
             <Link
               href="/faq"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-ink-700 px-5 py-3 text-sm font-medium text-white transition hover:border-ink-500 hover:bg-ink-900 focus-ring"
@@ -42,7 +45,7 @@ export function FinalCTA() {
           </div>
 
           <p className="mt-6 font-mono text-xs text-fg-subtle">
-            macOS 14 Sonoma+ · Apple Silicon &amp; Intel · 39 MB
+            macOS 14 Sonoma+ · Apple Silicon &amp; Intel
           </p>
         </div>
       </div>

@@ -4,11 +4,32 @@ export const SITE = {
   description:
     'Solo Crate is a Mac-native receipt manager. Drag in a receipt, Apple Vision reads it locally, tags auto-apply, export a clean bundle. No subscription, 14-day free trial.',
   url: 'https://JiaLinLiGH.github.io/solo-crate-site/',
-  appStoreUrl: 'https://apps.apple.com/us/app/id000000000',
+  appStoreId: 'id6796637773',
+  appStoreUrl: 'https://apps.apple.com/us/app/solo-crate/id6796637773',
   supportUrl: 'mailto:lijialin6972@163.com',
   privacyUrl: '/privacy',
   termsUrl: '/terms',
 };
+
+export type AppStoreSource =
+  | 'hero'
+  | 'pricing-trial'
+  | 'pricing-buy'
+  | 'final-cta'
+  | 'navigation'
+  | 'footer';
+
+export function appStoreLink(
+  source: AppStoreSource,
+  campaign: string = 'launch',
+): string {
+  const url = new URL(SITE.appStoreUrl);
+  url.searchParams.set('utm_source', 'site');
+  url.searchParams.set('utm_medium', 'web');
+  url.searchParams.set('utm_campaign', campaign);
+  url.searchParams.set('utm_content', source);
+  return url.toString();
+}
 
 export const NAV_LINKS = [
   { href: '/#features', label: 'Features' },

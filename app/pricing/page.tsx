@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { ComparisonTable } from '@/components/ComparisonTable';
-import { PRO_PRICE, TRIAL_DAYS } from '@/lib/content';
+import { PRO_PRICE, TRIAL_DAYS, appStoreLink } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Pricing',
@@ -26,7 +26,7 @@ const FAQ = [
   },
   {
     q: 'How does the trial work?',
-    a: 'Tap "Start 14-day trial" in Settings → Solo Crate Pro. The trial anchors to the verified purchase date and Family Shares if your household has Family Sharing on. After 14 days the app stays usable for read, edit, Schedule C view, and Trash; you can import or export again as soon as you buy the unlock.',
+    a: 'Open the Mac App Store, click your name in the bottom-left, then choose Subscriptions. You will see Solo Crate listed with Manage or Cancel Trial. The trial anchors to your Apple ID purchase date and Family Shares with your household if Family Sharing is on. After 14 days the app stays usable for read, edit, Schedule C view, and Trash; you can import or export again as soon as you buy the unlock.',
   },
   {
     q: 'Is Family Sharing included?',
@@ -98,12 +98,14 @@ export default function PricingPage() {
                 ))}
               </ul>
 
-              <Link
-                href="#"
+              <a
+                href={appStoreLink('pricing-trial')}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-9 inline-flex items-center justify-center gap-2 rounded-xl border border-edge bg-surface px-4 py-3 text-sm font-medium text-fg transition hover:border-edge-strong hover:bg-surface-muted focus-ring"
               >
                 Start {TRIAL_DAYS}-day trial
-              </Link>
+              </a>
             </article>
 
             <article className="relative flex flex-col rounded-2xl border border-ink-900 bg-ink-900 p-8 text-[rgb(var(--bg))] shadow-lifted dark:border-ink-700 dark:bg-ink-950">
@@ -149,12 +151,14 @@ export default function PricingPage() {
                 ))}
               </ul>
 
-              <Link
-                href="#"
+              <a
+                href={appStoreLink('pricing-buy')}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-9 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-medium text-ink-900 transition hover:bg-ink-50 focus-ring"
               >
                 Buy for {PRO_PRICE}
-              </Link>
+              </a>
             </article>
           </div>
 
