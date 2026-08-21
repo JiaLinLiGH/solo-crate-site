@@ -74,8 +74,8 @@ export default function FaqPage() {
               Still have questions?
             </h2>
             <p className="mt-2 text-sm text-fg-muted">
-              We answer every email in under 24 hours during weekdays, from
-              the same team that built the app.
+              We usually answer within one business day — same team that
+              built the app.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link
