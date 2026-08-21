@@ -4,7 +4,8 @@ import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Terms of service',
-  description: 'Terms for using Solo Crate.',
+  description:
+    'Solo Crate terms of service: a perpetual $49.99 license for the v1.x major version, with optional upgrade discount on future major versions. 30-day refund window. No tax advice.',
 };
 
 export default function TermsPage() {
