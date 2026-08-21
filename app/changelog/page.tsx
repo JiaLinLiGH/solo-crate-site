@@ -10,9 +10,20 @@ export const metadata: Metadata = {
 
 const RELEASES = [
   {
+    version: '1.0',
+    date: 'August 21, 2026',
+    tag: 'Current',
+    highlights: [
+      'First public release on the Mac App Store (US)',
+      '14-day free trial, $49.99 one-time unlock, Family Sharing enabled',
+      '~2 MB download, runs fully offline on macOS 14 Sonoma and later',
+      'English (United States) and Simplified Chinese metadata',
+    ],
+  },
+  {
     version: '1.7.5',
     date: 'July 29, 2026',
-    tag: 'Current',
+    tag: 'Build',
     highlights: [
       'CPA-ready ZIP export: every PDF + manifest.csv + audit notes',
       'Three-layer duplicate detection (SHA256 → pHash → OCR fuzzy)',
@@ -23,7 +34,7 @@ const RELEASES = [
   {
     version: '1.6',
     date: 'April 28, 2026',
-    tag: 'Shipped',
+    tag: 'Build',
     highlights: [
       'Year-of-rules with full Boolean tree editor (AND / OR / NOT)',
       'Calendar-year switching from the sidebar without restart',
@@ -34,18 +45,18 @@ const RELEASES = [
   {
     version: '1.5',
     date: 'February 12, 2026',
-    tag: 'Shipped',
+    tag: 'TestFlight',
     highlights: [
-      'First public release on the Mac App Store',
+      'First public TestFlight release',
       'Local-first Core Data store with App Sandbox',
       'PDF + JPEG / PNG / HEIC drag-and-drop import',
       'Smart Folders with on-device Spotlight-like search',
     ],
   },
   {
-    version: '1.0',
+    version: '1.0-beta',
     date: 'October 03, 2025',
-    tag: 'Beta',
+    tag: 'Closed beta',
     highlights: [
       'Closed beta with 120 freelancers across Schedule C filers',
       'Core three-pane layout tuned on Sonoma and Sequoia',
