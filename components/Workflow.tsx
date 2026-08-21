@@ -3,7 +3,7 @@ const STEPS = [
     n: '01',
     title: 'Drop receipts in',
     description:
-      'Drag PDFs from Finder, snap photos of paper receipts, or forward email attachments. Apple VisionKit OCR runs on-device; no uploads.',
+      'Drag PDFs from Finder, snap photos of paper receipts, or forward email attachments. Apple Vision OCR runs on-device; no uploads.',
     chip: '30 seconds per receipt',
   },
   {

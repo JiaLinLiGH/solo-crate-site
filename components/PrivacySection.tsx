@@ -52,7 +52,7 @@ export function PrivacySection() {
               <div className="mt-6 space-y-4">
                 <Layer color="moss" title="Your Mac">
                   <Row>SwiftData store (~/Library/Application Support/com.solocrate.app/)</Row>
-                  <Row>OCR cache (Apple VisionKit, runs on-device)</Row>
+                  <Row>OCR cache (Apple Vision, on-device)</Row>
                   <Row>Originals (PDF / JPEG, kept verbatim for audit)</Row>
                 </Layer>
 
