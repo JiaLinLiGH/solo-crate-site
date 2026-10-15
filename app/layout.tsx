@@ -93,6 +93,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: canonicalUrl(),
   },
+  // Google Search Console ownership proof. The repo is served from a
+  // `github.io` public suffix, so a DNS TXT record is not an option — we do
+  // not control that zone. URL-prefix + HTML tag is the only route that
+  // works here; the same token also verifies the matching HTML file.
+  verification: {
+    google: 'f119b6df55484bae',
+  },
 };
 
 // JSON-LD structured data — enables Google rich result "Software App" card
