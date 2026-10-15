@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { SITE, OG_IMAGE, canonicalUrl } from '@/lib/content';
+import { SITE, OG_IMAGE, canonicalUrl, assetPath } from '@/lib/content';
 import './globals.css';
 
 // themeColor moved out of `metadata` in Next.js 14 — it belongs to the
@@ -59,17 +59,23 @@ export const metadata: Metadata = {
       'The Mac-native receipt manager. Local OCR, tags, rule automation, $49.99 once, 14-day free trial.',
     images: [OG_IMAGE.url],
   },
+  // NOTE: icon and manifest paths must carry basePath. Next.js does NOT
+  // prepend it to `metadata.icons` / `metadata.manifest`, so a bare
+  // "/favicon.ico" resolves at the domain root and 404s on GitHub Pages,
+  // where the site is served from a subpath. assetPath() adds the prefix
+  // while keeping the URL root-relative, so local dev and production both
+  // resolve against the current origin.
   icons: {
     icon: [
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+      { url: assetPath('icon.svg'), type: 'image/svg+xml' },
+      { url: assetPath('favicon.ico'), sizes: 'any' },
+      { url: assetPath('icon-192.png'), sizes: '192x192', type: 'image/png' },
+      { url: assetPath('icon-512.png'), sizes: '512x512', type: 'image/png' },
     ],
-    shortcut: '/icon.svg',
-    apple: '/apple-touch-icon.png',
+    shortcut: [assetPath('icon.svg')],
+    apple: [assetPath('apple-touch-icon.png')],
   },
-  manifest: '/site.webmanifest',
+  manifest: assetPath('site.webmanifest'),
   robots: {
     index: true,
     follow: true,

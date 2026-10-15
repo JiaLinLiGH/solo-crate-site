@@ -34,6 +34,26 @@ export function canonicalUrl(path: string = '/'): string {
   return new URL(rel, SITE.url).toString();
 }
 
+/**
+ * Mirrors `basePath` in next.config.mjs. Keep the two in sync.
+ */
+export const BASE_PATH = '/solo-crate-site';
+
+/**
+ * Root-relative URL for a static asset, with basePath already applied.
+ *
+ * Prefer this over canonicalUrl() for anything the *browser* fetches (favicons,
+ * apple-touch-icon, the web manifest). Those must carry basePath — Next.js
+ * does not add it to `metadata.icons` / `metadata.manifest` — but they do NOT
+ * need to be absolute to the production host, and pinning them to the live
+ * domain would make every local dev reload 404 against an undeployed site.
+ *
+ *   assetPath('favicon.ico') -> /solo-crate-site/favicon.ico
+ */
+export function assetPath(file: string): string {
+  return `${BASE_PATH}/${file.replace(/^\/+/, '')}`;
+}
+
 /** Shared 1200x630 social card. Referenced by both og:image and twitter:image. */
 export const OG_IMAGE = {
   url: canonicalUrl('opengraph-image.png'),
