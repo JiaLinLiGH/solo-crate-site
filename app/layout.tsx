@@ -1,9 +1,22 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { SITE, OG_IMAGE, canonicalUrl } from '@/lib/content';
 import './globals.css';
 
+// themeColor moved out of `metadata` in Next.js 14 — it belongs to the
+// viewport export, otherwise the build warns on every route and the tag is
+// dropped from the rendered head.
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fbfbf9' },
+    { media: '(prefers-color-scheme: dark)', color: '#0b0b0a' },
+  ],
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://JiaLinLiGH.github.io/solo-crate-site/'),
+  metadataBase: new URL(SITE.url),
   title: {
     default: 'Solo Crate — Receipts, organized on your Mac',
     template: '%s · Solo Crate',
@@ -28,29 +41,51 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Solo Crate' }],
   creator: 'Solo Crate',
+  applicationName: 'Solo Crate',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://JiaLinLiGH.github.io/solo-crate-site/',
+    url: canonicalUrl(),
     siteName: 'Solo Crate',
     title: 'Solo Crate — Receipts, organized on your Mac',
     description:
       'The Mac-native receipt manager. Drag in a receipt, Apple Vision reads it locally, tags auto-apply, export a clean bundle. $49.99 once, 14-day free trial.',
-    // images: add once opengraph-image.png exists
+    images: [OG_IMAGE],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Solo Crate — Receipts, organized on your Mac',
     description:
       'The Mac-native receipt manager. Local OCR, tags, rule automation, $49.99 once, 14-day free trial.',
-    // images: add once opengraph-image.png exists
+    images: [OG_IMAGE.url],
   },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/icon.svg',
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
+  // Absolute URL rather than a path. Next.js would otherwise resolve this
+  // against metadataBase and every sub-page inherited this one value, telling
+  // Google that pricing/faq/changelog/privacy/terms were all duplicates of the
+  // homepage. Each sub-page now overrides it via canonicalUrl().
   alternates: {
-    canonical: '/',
+    canonical: canonicalUrl(),
   },
 };
 
@@ -66,9 +101,9 @@ const softwareJsonLd = {
   operatingSystem: 'macOS 14.0 Sonoma or later',
   description:
     'Mac-native receipt manager for self-employed Americans. Local Apple Vision OCR, automatic Schedule C tagging, CPA-ready export. 100% offline, no account, no subscription.',
-  url: 'https://JiaLinLiGH.github.io/solo-crate-site/',
-  downloadUrl:
-    'https://apps.apple.com/us/app/solo-crate/id6796637773',
+  url: canonicalUrl(),
+  downloadUrl: SITE.appStoreUrl,
+  image: OG_IMAGE.url,
   softwareVersion: '1.0',
   datePublished: '2026-08-21',
   inLanguage: 'en',
@@ -78,8 +113,7 @@ const softwareJsonLd = {
     priceCurrency: 'USD',
     category: 'one-time',
     availability: 'https://schema.org/InStock',
-    url:
-      'https://apps.apple.com/us/app/solo-crate/id6796637773',
+    url: SITE.appStoreUrl,
   },
   author: {
     '@type': 'Organization',

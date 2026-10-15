@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { canonicalUrl } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Changelog',
   description:
     'Solo Crate release notes. New versions, fixes, and small improvements worth knowing about.',
+  alternates: { canonical: canonicalUrl('changelog/') },
 };
 
 const RELEASES = [

@@ -1,0 +1,40 @@
+{
+  "name": "Solo Crate — Receipts, organized on your Mac",
+  "short_name": "Solo Crate",
+  "description": "The Mac-native receipt manager for Schedule C filers. Apple Vision reads receipts locally, tags auto-apply, and you export a clean bundle for your CPA. $49.99 once, 14-day free trial.",
+  "start_url": "/solo-crate-site/",
+  "scope": "/solo-crate-site/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b0b0a",
+  "theme_color": "#0b0b0a",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/solo-crate-site/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/solo-crate-site/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/solo-crate-site/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/solo-crate-site/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

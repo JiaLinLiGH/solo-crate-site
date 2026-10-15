@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { canonicalUrl } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Privacy policy',
   description:
     'Solo Crate privacy policy. Local-first storage, no bank linking, no telemetry, no upload — ever.',
+  alternates: { canonical: canonicalUrl('privacy/') },
 };
 
 export default function PrivacyPage() {

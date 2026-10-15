@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-import { FAQS } from '@/lib/content';
+import { FAQS, canonicalUrl } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'FAQ',
   description: 'Common questions about Solo Crate, pricing, privacy, and Schedule C integration.',
+  alternates: { canonical: canonicalUrl('faq/') },
 };
 
 export default function FaqPage() {

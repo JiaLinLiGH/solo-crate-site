@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Static export for GitHub Pages (https://JiaLinLiGH.github.io/solo-crate-site/)
+  // Static export for GitHub Pages (https://jialinligh.github.io/solo-crate-site/)
   output: 'export',
   basePath: '/solo-crate-site',
   trailingSlash: true,

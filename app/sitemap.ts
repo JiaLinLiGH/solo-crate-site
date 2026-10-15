@@ -1,45 +1,44 @@
-import { SITE } from '@/lib/content';
+import { canonicalUrl } from '@/lib/content';
 import type { MetadataRoute } from 'next';
 
-// In Next.js 14 static export with basePath, the simplest working pattern is
-// to pass the full absolute URL (including basePath) for each entry. Next.js
-// passes these through verbatim into the XML without further mutation.
+// next.config.mjs sets `trailingSlash: true`, so the URL actually served for
+// `/pricing` is `/pricing/`. Listing the slashless form here made every
+// sitemap entry pay a 301 before Google could see it, and contradicted the
+// canonical tag. canonicalUrl() emits the served form, trailing slash included.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const abs = (path: string) =>
-    new URL(path, SITE.url.replace(/\/$/, '')).toString();
   return [
     {
-      url: abs('/solo-crate-site'),
+      url: canonicalUrl(),
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: abs('/solo-crate-site/pricing'),
+      url: canonicalUrl('pricing/'),
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: abs('/solo-crate-site/faq'),
+      url: canonicalUrl('faq/'),
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: abs('/solo-crate-site/changelog'),
+      url: canonicalUrl('changelog/'),
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: abs('/solo-crate-site/privacy'),
+      url: canonicalUrl('privacy/'),
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
-      url: abs('/solo-crate-site/terms'),
+      url: canonicalUrl('terms/'),
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.3,

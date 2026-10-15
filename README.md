@@ -43,7 +43,9 @@ npm run build         # writes static site to ./out
 ## Deployment
 
 Auto-deploys to GitHub Pages via `.github/workflows/deploy.yml` on every
-push to `main`. Site URL: `https://JiaLinLiGH.github.io/solo-crate-site/`
+push to `main`.
+
+**Live site: [jialinligh.github.io/solo-crate-site](https://jialinligh.github.io/solo-crate-site/)**
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for full setup and custom-domain instructions.
 
@@ -60,7 +62,8 @@ See [DEPLOYMENT.md](./DEPLOYMENT.md) for full setup and custom-domain instructio
 │   └── terms/            # /terms
 ├── components/           # React Server Components (no client JS for static content)
 ├── lib/content.ts        # All marketing copy lives here
-├── public/               # Static assets (icon.svg)
+├── public/               # Static assets (icons + opengraph-image.png)
+├── scripts/              # Asset build helpers (build-favicon.mjs)
 ├── .github/workflows/    # GitHub Actions
 ├── next.config.mjs       # output: 'export' + basePath: '/solo-crate-site'
 └── tailwind.config.ts

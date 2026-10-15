@@ -1,8 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="7" fill="#0b0b0a"/>
-  <path d="M8 8h12l4 4v12H8z" stroke="#fbfbf9" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M22 8v4h-4" stroke="#fbfbf9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M12 13h8" stroke="#3d7a5c" stroke-width="2" stroke-linecap="round"/>
-  <path d="M12 17h8" stroke="#3d7a5c" stroke-width="2" stroke-linecap="round"/>
-  <path d="M12 21h5" stroke="#3d7a5c" stroke-width="2" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Solo Crate">
+  <!--
+    Vector counterpart of public/_appstore-icon-1024.png (the icon published on
+    the Mac App Store for com.solocrate.app). Both must stay in sync: the PNG /
+    ICO set is what most browsers actually load, the SVG is the scalable
+    variant used for high-DPI and in-page display.
+
+    macOS icons are squircle-masked on top of a full-bleed artboard, so the
+    artboard is a plain square here and the OS applies the mask.
+  -->
+  <defs>
+    <filter id="lift" x="-30%" y="-30%" width="170%" height="170%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#0b0b0a" flood-opacity="0.16"/>
+    </filter>
+    <filter id="badge" x="-40%" y="-40%" width="190%" height="190%">
+      <feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#0b0b0a" flood-opacity="0.22"/>
+    </filter>
+    <clipPath id="sheet">
+      <rect x="104" y="84" width="300" height="318" rx="30"/>
+    </clipPath>
+  </defs>
+
+  <rect width="512" height="512" fill="#f4f4f2"/>
+
+  <!-- clipboard body -->
+  <g filter="url(#lift)">
+    <rect x="104" y="84" width="300" height="318" rx="30" fill="#ffffff"/>
+  </g>
+
+  <!-- dark title bar + wordmark -->
+  <g clip-path="url(#sheet)">
+    <rect x="104" y="84" width="300" height="70" fill="#1c1c1a"/>
+  </g>
+  <text x="254" y="134"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="42" font-weight="700" fill="#ffffff"
+        text-anchor="middle" letter-spacing="-0.5">Solo Crate</text>
+
+  <!-- receipt lines -->
+  <g fill="#c4c4c0">
+    <rect x="152" y="190" width="204" height="15" rx="7.5"/>
+    <rect x="152" y="233" width="204" height="15" rx="7.5"/>
+    <rect x="152" y="276" width="204" height="15" rx="7.5"/>
+    <rect x="152" y="319" width="132" height="15" rx="7.5"/>
+  </g>
+
+  <!-- approved badge -->
+  <g filter="url(#badge)">
+    <circle cx="344" cy="336" r="56" fill="#1c1c1a"/>
+  </g>
+  <path d="M321 337 l15 15 l30 -31"
+        fill="none" stroke="#ffffff" stroke-width="11"
+        stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

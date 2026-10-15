@@ -22,7 +22,7 @@ auto-deploys every push to `main`.
 4. The workflow runs `npm ci → typecheck → next build (output: export) →
    touch out/.nojekyll → upload artifact → deploy`.
 5. After ~45 seconds the site is live at
-   **https://JiaLinLiGH.github.io/solo-crate-site/**
+   **https://jialinligh.github.io/solo-crate-site/**
 
 ## How static export works here
 
@@ -34,6 +34,28 @@ auto-deploys every push to `main`.
 | `basePath` | `'/solo-crate-site'` | GitHub Pages serves project sites at `/<repo>/`; this prefix rewrites all internal `<Link>` hrefs |
 | `trailingSlash` | `true` | GitHub Pages' static host resolves `/privacy/` (not `/privacy`) — this avoids 404s on direct hits to nested pages |
 | `images.unoptimized` | `true` | Next.js' image optimizer needs a server; static export requires this off |
+
+`trailingSlash: true` has a second consequence that matters for SEO: the URL
+actually served for `/pricing` is `/pricing/`. Canonical tags and
+`sitemap.xml` therefore both emit the trailing-slash form, via `canonicalUrl()`
+in `lib/content.ts`. Changing either one without the other reintroduces a 301
+hop that contradicts the canonical.
+
+## Icons and the social card
+
+| File | Purpose |
+|---|---|
+| `assets/app-icon-1024.png` | App Store artwork for `com.solocrate.app` — the source of truth. Outside `public/`, so it is never deployed |
+| `public/icon.svg` | Vector version of the same design, for high-DPI / in-page use |
+| `public/favicon.ico` | 16/32/48, assembled by `scripts/build-favicon.mjs` |
+| `public/icon-192.png`, `public/icon-512.png` | PWA / manifest icons, squircle-masked with transparent corners |
+| `public/apple-touch-icon.png` | 180×180, **full-bleed and opaque** — iOS applies its own mask and renders transparency as black |
+| `public/opengraph-image.png` | 1200×620 social card, referenced through `OG_IMAGE` in `lib/content.ts` |
+| `public/site.webmanifest` | PWA manifest |
+
+If the app icon changes on the App Store, replace `assets/app-icon-1024.png`
+and re-derive everything downstream — the PNG/ICO set and `icon.svg` must stay
+visually in sync, because browsers pick between them.
 
 ## Previewing locally
 
@@ -75,4 +97,4 @@ back to `''` once you're serving at the apex.
 | Build fails on `next/image` | `images.unoptimized: true` is required for `output: 'export'` |
 | Workflow permission denied | Repo Settings → Actions → General → Workflow permissions: "Read and write" |
 | Preview deploy 500s on image | n/a — we're not using `next/image` for remote URLs |
-| Domain not resolving | DNS propagation up to 48h; check with `dig JiaLinLiGH.github.io +short` |
+| Domain not resolving | DNS propagation up to 48h; check with `dig jialinligh.github.io +short` |

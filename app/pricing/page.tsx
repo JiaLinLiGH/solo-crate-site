@@ -3,12 +3,13 @@ import Link from 'next/link';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { ComparisonTable } from '@/components/ComparisonTable';
-import { PRO_PRICE, TRIAL_DAYS, appStoreLink } from '@/lib/content';
+import { PRO_PRICE, TRIAL_DAYS, appStoreLink, canonicalUrl } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Pricing',
   description:
     'Solo Crate offers a 14-day free trial and a $49.99 one-time unlock. No subscription, no per-seat fees, no hidden tiers.',
+  alternates: { canonical: canonicalUrl('pricing/') },
 };
 
 const FAQ = [

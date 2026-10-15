@@ -3,12 +3,43 @@ export const SITE = {
   tagline: 'Mac-native receipts, organized',
   description:
     'Solo Crate is a Mac-native receipt manager. Drag in a receipt, Apple Vision reads it locally, tags auto-apply, export a clean bundle. No subscription, 14-day free trial.',
-  url: 'https://JiaLinLiGH.github.io/solo-crate-site/',
+  // Hostnames are case-insensitive, but canonical URLs, JSON-LD and sitemap
+  // entries must match byte-for-byte or search engines see conflicting signals.
+  // Lowercase everywhere; `JiaLinLiGH.github.io` and `jialinligh.github.io`
+  // resolve to the same host but are different strings to a crawler.
+  url: 'https://jialinligh.github.io/solo-crate-site/',
   appStoreId: 'id6796637773',
-  appStoreUrl: 'https://apps.apple.com/us/app/solo-crate/id6796637773',
+  // `mt=12` is Apple's "open in Mac App Store" marker. Without it the link
+  // opens the generic web storefront, which geo-redirects to the App Store
+  // homepage for visitors outside the US store.
+  appStoreUrl:
+    'https://apps.apple.com/us/app/solo-crate/id6796637773?mt=12',
   supportUrl: 'mailto:lijialin6972@163.com',
   privacyUrl: '/privacy',
   termsUrl: '/terms',
+};
+
+/**
+ * Build an absolute canonical URL for a site path.
+ *
+ * `next.config.mjs` sets `trailingSlash: true`, so the URL actually served for
+ * `/pricing` is `/pricing/`. Canonical must match the served form exactly or
+ * every sub-page pays a 301 hop before Google can associate it with itself.
+ *
+ *   canonicalUrl()          -> https://jialinligh.github.io/solo-crate-site/
+ *   canonicalUrl('pricing/') -> https://jialinligh.github.io/solo-crate-site/pricing/
+ */
+export function canonicalUrl(path: string = '/'): string {
+  const rel = path.replace(/^\/+/, '');
+  return new URL(rel, SITE.url).toString();
+}
+
+/** Shared 1200x630 social card. Referenced by both og:image and twitter:image. */
+export const OG_IMAGE = {
+  url: canonicalUrl('opengraph-image.png'),
+  width: 1200,
+  height: 630,
+  alt: 'Solo Crate — the Mac-native receipt manager for self-employed people',
 };
 
 export type AppStoreSource =
@@ -24,6 +55,9 @@ export function appStoreLink(
   campaign: string = 'launch',
 ): string {
   const url = new URL(SITE.appStoreUrl);
+  // Set explicitly rather than relying on it surviving from appStoreUrl, so a
+  // future edit to the base URL can't silently drop the Mac App Store marker.
+  url.searchParams.set('mt', '12');
   url.searchParams.set('utm_source', 'site');
   url.searchParams.set('utm_medium', 'web');
   url.searchParams.set('utm_campaign', campaign);

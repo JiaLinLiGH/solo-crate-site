@@ -1,80 +1,47 @@
-# TODO — Open Graph image for Solo Crate site
+# Open Graph image — DONE
 
-**Status**: pending
-**Owner**: 雨林霖
-**Created**: 2026-08-21
-**Reason**: SEO audit on 2026-08-21 found the site has no `og:image` /
-`twitter:image`. Sharing to Reddit / X / LinkedIn / Slack / 飞书 etc.
-shows no thumbnail, which measurably reduces click-through.
+**Status**: shipped 2026-10-15
+**File**: `public/opengraph-image.png` (1200×630, ~115 KB)
+**Referenced by**: `OG_IMAGE` in `lib/content.ts`, consumed by `og:image` and
+`twitter:image` in `app/layout.tsx`
 
-**When to do this**:
-- Before any Product Hunt launch (PH and OG images are tightly coupled)
-- Or whenever there's a free afternoon
+## What shipped
 
-## Spec
+A dark `ink-900` card with a moss radial glow, the wordmark, the headline
+"Receipts, organized on your Mac.", the "Apple Vision reads every receipt
+locally. No upload, ever." supporting line, a "$49.99 once · 14-day free trial"
+pill, and a light receipt mockup on the right showing three line items and a
+tax-year total.
 
-- **Dimensions**: 1200 × 630 px (Twitter / OG / LinkedIn standard)
-- **Aspect ratio**: 1.91:1
-- **Format**: PNG or JPG, < 5 MB (most platforms cap at 5 MB; some at 8 MB)
-- **File name**: `opengraph-image.png`
-- **Where to put it**: `app/opengraph-image.png`
-  (Next.js App Router auto-detects and serves it; no code change needed)
+The brand mark is the real App Store icon, not a hand-drawn stand-in.
 
-## Required content
+## Spec compliance
 
-1. **Product name** "Solo Crate" — large, top-left or center
-2. **One-line value prop** — recommended:
-   > "The Mac-native receipt manager for self-employed."
-3. **Price anchor** — small, bottom-right:
-   > "$49.99 once · 14-day free trial"
-4. **Brand mark** — small Solo Crate logo, consistent with site
-5. **Visual** — a clean receipt or window mockup on the right side
-   (optional but +30% CTR vs text-only)
+| Requirement | Status |
+|---|---|
+| 1200×630 (1.91:1) | ✅ |
+| Product name large and legible at ~300×157 thumbnail | ✅ |
+| Value prop present | ✅ |
+| Price + trial anchor | ✅ |
+| Brand mark matching the app | ✅ |
+| Visual element (receipt mockup) | ✅ |
+| Site palette (`ink-900` / `moss-300` / off-white) | ✅ |
+| No text under 24px | ✅ (smallest is 15px, and only inside the mockup) |
+| No discount language (Apple 2.3.1) | ✅ |
+| No "best / leading / perfect" (Apple 5.2.1) | ✅ |
 
-## Design constraints
+## Regenerating
 
-- **Color palette**: stick to site palette
-  (`ink-900` background OK, `moss-700/300` accent, off-white text)
-- **Light/dark variant**: ship one variant first; ship the other
-  if Twitter complains about contrast on a dark background
-- **No text under 24 px** at 1200×630 — gets lost on mobile previews
-- **No price discount language** — Apple Review Guidelines 2.3.1
-- **No "best #1" / "leading" / "perfect"** — App Store 5.2.1
+`assets/app-icon-1024.png` is the App Store artwork for `com.solocrate.app`,
+kept outside `public/` so it is not deployed. Icon sizes are derived from it;
+see `scripts/build-favicon.mjs` and the notes in `DEPLOYMENT.md`.
 
-## Where the OG image shows up
+If the app icon changes on the App Store, replace
+`assets/app-icon-1024.png` and re-derive `public/icon-{192,512}.png`,
+`public/apple-touch-icon.png`, `public/favicon.ico` and this file.
 
-- Twitter / X link cards
-- LinkedIn link previews
-- Reddit link previews (r/freelance, r/macapps, r/IndieHackers)
-- Slack / Discord / 飞书 / Telegram link unfurls
-- Product Hunt submission card
-- Indie Hackers post previews
-- iMessage link previews
-- Google search "Share" preview
-- Hacker News (uses `og:image` if present)
+## Still outstanding
 
-## Acceptance checklist
-
-- [ ] Image is 1200×630 px
-- [ ] "Solo Crate" is readable at thumbnail size (~300×157)
-- [ ] Price and trial text present
-- [ ] File saved at `app/opengraph-image.png`
-- [ ] After deploy, check https://jialinligh.github.io/solo-crate-site/opengraph-image.png returns 200
-- [ ] Uncomment `images:` lines in `app/layout.tsx` (og + twitter)
-- [ ] Validate via https://www.opengraph.xyz/ or Twitter Card Validator
-- [ ] Post one link to a test Slack/Discord channel, confirm thumbnail shows
-
-## Tools
-
-- **Figma** — best for custom design
-- **Canva** — fastest, has 1200×630 template
-- **Apple Keynote / Figma export** — for free PNG export
-- **Playwright `page.screenshot()`** — programmatic generation (we tried
-  this earlier in the day; result was usable but plain)
-- **Vercel OG Image Generation** (`@vercel/og`) — generates from JSX
-  on demand, fully programmatic, requires switching off static export
-  (not currently compatible with the GitHub Pages setup)
-
-## Estimated effort
-
-~20 minutes in Figma/Canva. ~5 minutes to deploy.
+- [ ] Confirm the card renders in a real Slack/Discord/X unfurl (deploy first)
+- [ ] Validate through <https://www.opengraph.xyz/>
+- [ ] Consider a light-background variant if X flags dark-card contrast

@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { canonicalUrl } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Terms of service',
   description:
     'Solo Crate terms of service: a perpetual $49.99 license for the v1.x major version, with optional upgrade discount on future major versions. 30-day refund window. No tax advice.',
+  alternates: { canonical: canonicalUrl('terms/') },
 };
 
 export default function TermsPage() {
