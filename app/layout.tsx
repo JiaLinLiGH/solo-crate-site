@@ -98,7 +98,7 @@ export const metadata: Metadata = {
   // not control that zone. URL-prefix + HTML tag is the only route that
   // works here; the same token also verifies the matching HTML file.
   verification: {
-    google: 'f119b6df55484bae',
+    google: 'yGW9YBVeIyg9rpZGfDdmjAeHH301pqMsxWIFgqIi3MU',
   },
 };
 
